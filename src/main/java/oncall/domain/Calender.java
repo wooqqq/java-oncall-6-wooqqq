@@ -50,4 +50,14 @@ public enum Calender {
     public List<String> getHolidayDate() {
         return parseHolidayDate(holidayDate);
     }
+
+    public List<Integer> convertHolidayDate() {
+        List<Integer> result = new ArrayList<>();
+        List<String> holidays = parseHolidayDate(holidayDate);
+        for (String input : holidays) {
+            int day = Integer.parseInt(input);
+            result.add(day);
+        }
+        return result;
+    }
 }
