@@ -82,6 +82,25 @@ public class EmergencyWork {
         return sorted;
     }
 
+    public String getTheDayOfWeek(int day) {
+        Week week = getWeekByDay(day);
+        return week.getDate();
+    }
+
+    private Week getWeekByDay(int day) {
+        int turn = (day + 1) % 7;
+        return getWeekByTurn(turn);
+    }
+
+    private Week getWeekByTurn(int number) {
+        for (Week week : Week.values()) {
+            if (week.getTurn() == number) {
+                return week;
+            }
+        }
+        return null;
+    }
+
     private boolean isWeekend(int day) {
         int turn = (day + 1) % 7;
         if (turn == 6 || turn == 0) {

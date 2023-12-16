@@ -7,7 +7,7 @@ public enum Week {
     THURSDAY("목", 4, false),
     FRIDAY("금", 5, false),
     SATURDAY("토", 6, true),
-    SUNDAY("일", 7, true);
+    SUNDAY("일", 0, true);
 
     private final String date;
     private final int turn;
