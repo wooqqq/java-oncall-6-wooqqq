@@ -21,7 +21,7 @@ public class EmergencyWorkMonth {
 
     private Week getWeekByStartDate(String startDate) {
         for (Week week : Week.values()) {
-            if (week.getDate().contains(startDate)) {
+            if (week.getDate().equals(startDate)) {
                 return week;
             }
         }

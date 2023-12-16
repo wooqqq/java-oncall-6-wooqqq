@@ -1,28 +1,30 @@
 package oncall.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public enum Week {
-    WEEKDAY("월,화,수,목,금", false),
-    WEEKEND("토,일", true);
+    MONDAY("월", 1, false),
+    TUESDAY("화", 2, false),
+    WEDNESDAY("수", 3, false),
+    THURSDAY("목", 4, false),
+    FRIDAY("금", 5, false),
+    SATURDAY("토", 6, true),
+    SUNDAY("일", 7, true);
 
-    private static final String SEPARATOR = ",";
     private final String date;
+    private final int turn;
     private final boolean isWeekend;
 
-    Week(String date, boolean isWeekend) {
+    Week(String date, int turn, boolean isWeekend) {
         this.date = date;
+        this.turn = turn;
         this.isWeekend = isWeekend;
     }
 
-    public List<String> parseDate(String input) {
-        return new ArrayList<>(Arrays.asList(input.split(SEPARATOR)));
+    public String getDate() {
+        return date;
     }
 
-    public List<String> getDate() {
-        return parseDate(date);
+    public int getTurn() {
+        return turn;
     }
 
     public boolean getIsWeekend() {
