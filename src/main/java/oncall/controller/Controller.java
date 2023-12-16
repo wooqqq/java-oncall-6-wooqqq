@@ -6,6 +6,7 @@ import oncall.domain.Employee;
 import oncall.domain.Employees;
 import oncall.view.InputEmployeeView;
 import oncall.view.InputMonthView;
+import oncall.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,7 @@ public class Controller {
         Employees holiday = setEmployees(getEmployee(getHolidayEmployee()));
         EmergencyWork emergencyWork = setEmergencyWork(workMonth, weekday, holiday);
 
-        Map<Integer, String> mergeEmployee = setDateAndEmployee(emergencyWork);
-        for (Map.Entry<Integer, String> entry : mergeEmployee.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-        }
+        printWorkSheet(emergencyWork);
     }
 
     private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {
@@ -66,8 +64,8 @@ public class Controller {
         return new EmergencyWork(workMonth, weekday, holiday);
     }
 
-    private Map<Integer, String> setDateAndEmployee(EmergencyWork emergencyWork) {
-        Map<Integer, String> mergeEmployee = emergencyWork.mergeAndSort(emergencyWork);
-        return mergeEmployee;
+    private void printWorkSheet(EmergencyWork emergencyWork) {
+        OutputView outputView = new OutputView();
+        outputView.getEmployeeSheet(emergencyWork);
     }
 }
