@@ -10,6 +10,7 @@ import oncall.view.InputMonthView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Controller {
     public void run() {
@@ -21,7 +22,8 @@ public class Controller {
         List<Integer> holidays = emergencyWork.setHoliday(workMonth);
         System.out.println(holidays);
         Map<Integer, String> holidayEmployee = emergencyWork.setHolidayEmployees(emergencyWork);
-        for (Map.Entry<Integer, String> entry : holidayEmployee.entrySet()) {
+        TreeMap<Integer, String> treeMap = new TreeMap<>(holidayEmployee);
+        for (Map.Entry<Integer, String> entry : treeMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
     }
