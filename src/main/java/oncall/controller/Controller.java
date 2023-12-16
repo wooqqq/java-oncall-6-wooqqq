@@ -1,5 +1,6 @@
 package oncall.controller;
 
+import oncall.domain.EmergencyWork;
 import oncall.domain.EmergencyWorkMonth;
 import oncall.domain.Employee;
 import oncall.domain.Employees;
@@ -12,9 +13,10 @@ import java.util.Map;
 
 public class Controller {
     public void run() {
-        setEmergencyWorkMonth(getMonth());
+        EmergencyWorkMonth workMonth = setEmergencyWorkMonth(getMonth());
         Employees weekday = setEmployees(getEmployee(getWeekdayEmployee()));
         Employees holiday = setEmployees(getEmployee(getHolidayEmployee()));
+        setEmergencyWork(workMonth, weekday, holiday);
     }
 
     private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {
@@ -53,5 +55,9 @@ public class Controller {
     private List<String> getHolidayEmployee() {
         InputEmployeeView inputEmployeeView = new InputEmployeeView();
         return inputEmployeeView.getHolidayEmployee();
+    }
+
+    private EmergencyWork setEmergencyWork(EmergencyWorkMonth workMonth, Employees weekday, Employees holiday) {
+        return new EmergencyWork(workMonth, weekday, holiday);
     }
 }
