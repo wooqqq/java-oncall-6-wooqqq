@@ -10,7 +10,6 @@ import oncall.view.InputMonthView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Controller {
     public void run() {
@@ -19,22 +18,7 @@ public class Controller {
         Employees holiday = setEmployees(getEmployee(getHolidayEmployee()));
         EmergencyWork emergencyWork = setEmergencyWork(workMonth, weekday, holiday);
 
-        List<Integer> holidays = emergencyWork.setHoliday(workMonth);
-//        System.out.println(holidays);
-        Map<Integer, String> holidayEmployee = emergencyWork.setHolidayEmployees(emergencyWork);
-        TreeMap<Integer, String> treeMap = new TreeMap<>(holidayEmployee);
-//        for (Map.Entry<Integer, String> entry : treeMap.entrySet()) {
-//            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-//        }
-        List<Integer> weekdays = emergencyWork.setWeekday(workMonth);
-//        System.out.println(weekdays);
-        Map<Integer, String> weekdayEmployee = emergencyWork.setWeekdayEmployees(emergencyWork);
-        TreeMap<Integer, String> treeMap2 = new TreeMap<>(weekdayEmployee);
-//        for (Map.Entry<Integer, String> entry : treeMap2.entrySet()) {
-//            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-//        }
-
-        Map<Integer, String> mergeEmployee = emergencyWork.mergeAndSort(weekdayEmployee, holidayEmployee);
+        Map<Integer, String> mergeEmployee = setDateAndEmployee(emergencyWork);
         for (Map.Entry<Integer, String> entry : mergeEmployee.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
@@ -80,5 +64,10 @@ public class Controller {
 
     private EmergencyWork setEmergencyWork(EmergencyWorkMonth workMonth, Employees weekday, Employees holiday) {
         return new EmergencyWork(workMonth, weekday, holiday);
+    }
+
+    private Map<Integer, String> setDateAndEmployee(EmergencyWork emergencyWork) {
+        Map<Integer, String> mergeEmployee = emergencyWork.mergeAndSort(emergencyWork);
+        return mergeEmployee;
     }
 }

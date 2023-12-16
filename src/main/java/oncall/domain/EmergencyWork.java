@@ -71,9 +71,9 @@ public class EmergencyWork {
         return weekdayEmployees;
     }
 
-
-
-    public Map<Integer, String> mergeAndSort(Map<Integer, String> weekday, Map<Integer, String> holiday) {
+    public Map<Integer, String> mergeAndSort(EmergencyWork emergencyWork) {
+        Map<Integer, String> weekday = setWeekdayEmployees(emergencyWork);
+        Map<Integer, String> holiday = setHolidayEmployees(emergencyWork);
         Map<Integer, String> merge = new HashMap<>(weekday);
         merge.putAll(holiday);
 
