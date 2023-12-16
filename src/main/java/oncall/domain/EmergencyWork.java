@@ -1,9 +1,6 @@
 package oncall.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class EmergencyWork {
     private static final int START_DAY = 1;
@@ -39,6 +36,18 @@ public class EmergencyWork {
             }
         }
         return holiday;
+    }
+
+    public Map<Integer, String> setHolidayEmployees(EmergencyWork emergencyWork) {
+        Map<Integer, String> holidayEmployees = new HashMap<>();
+        List<Integer> holidays = setHoliday(emergencyWork.getWorkMonth());
+        List<String> employees = emergencyWork.holidayEmployee.getEmployees();
+        for (int i = 0; i < holidays.size(); i++) {
+            int holiday = holidays.get(i);
+            String employee = employees.get(i % employees.size());
+            holidayEmployees.put(holiday, employee);
+        }
+        return holidayEmployees;
     }
 
     private int isWeekend(int day) {

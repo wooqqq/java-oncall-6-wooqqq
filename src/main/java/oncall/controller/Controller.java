@@ -20,6 +20,10 @@ public class Controller {
 
         List<Integer> holidays = emergencyWork.setHoliday(workMonth);
         System.out.println(holidays);
+        Map<Integer, String> holidayEmployee = emergencyWork.setHolidayEmployees(emergencyWork);
+        for (Map.Entry<Integer, String> entry : holidayEmployee.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
     }
 
     private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {
