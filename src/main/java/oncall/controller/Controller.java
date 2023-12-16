@@ -11,12 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Controller {
-    private InputEmployeeView inputEmployeeView;
-
     public void run() {
         setEmergencyWorkMonth(getMonth());
-        Employees weekday = setEmployees(getEmployee(getWeekdayEmployee()));
-        Employees holiday = setEmployees(getEmployee(getHolidayEmployee()));
+        setEmployees(getEmployee(getWeekdayEmployee()));
+        setEmployees(getEmployee(getHolidayEmployee()));
     }
 
     private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {
@@ -38,7 +36,7 @@ public class Controller {
     }
 
     private List<Employee> getEmployee(List<String> employeeNames) {
-        inputEmployeeView = new InputEmployeeView();
+        InputEmployeeView inputEmployeeView = new InputEmployeeView();
         List<Employee> employees = new ArrayList<>();
         List<String> names = employeeNames;
         for (String name : names) {
@@ -49,10 +47,12 @@ public class Controller {
     }
 
     private List<String> getWeekdayEmployee() {
+        InputEmployeeView inputEmployeeView = new InputEmployeeView();
         return inputEmployeeView.getWeekdayEmployee();
     }
 
     private List<String> getHolidayEmployee() {
+        InputEmployeeView inputEmployeeView = new InputEmployeeView();
         return inputEmployeeView.getHolidayEmployee();
     }
 }
