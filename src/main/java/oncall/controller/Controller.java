@@ -26,6 +26,13 @@ public class Controller {
         for (Map.Entry<Integer, String> entry : treeMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
+        List<Integer> weekdays = emergencyWork.setWeekday(workMonth);
+        System.out.println(weekdays);
+        Map<Integer, String> weekdayEmployee = emergencyWork.setWeekdayEmployees(emergencyWork);
+        TreeMap<Integer, String> treeMap2 = new TreeMap<>(weekdayEmployee);
+        for (Map.Entry<Integer, String> entry : treeMap2.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
     }
 
     private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {

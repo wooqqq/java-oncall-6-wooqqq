@@ -28,14 +28,23 @@ public class EmergencyWork {
         Calender calender = workMonth.getCalender();
         int lastDay = calender.getDate();
         for (int day = 0; day < lastDay; day++) {
-            if (isWeekend(day) == 6 || isWeekend(day) == 0) {
-                holiday.add(day);
-            }
-            if (calender.convertHolidayDate().contains(day)) {
+            if (isWeekend(day) || isHoliday(calender.convertHolidayDate(), day)) {
                 holiday.add(day);
             }
         }
         return holiday;
+    }
+
+    public List<Integer> setWeekday(EmergencyWorkMonth workMonth) {
+        List<Integer> weekdays = new ArrayList<>();
+        Calender calender = workMonth.getCalender();
+        int lastDay = calender.getDate();
+        for (int day = 1; day <= lastDay; day++) {
+            if (!isWeekend(day) && !isHoliday(calender.convertHolidayDate(), day)) {
+                weekdays.add(day);
+            }
+        }
+        return weekdays;
     }
 
     public Map<Integer, String> setHolidayEmployees(EmergencyWork emergencyWork) {
@@ -50,7 +59,30 @@ public class EmergencyWork {
         return holidayEmployees;
     }
 
-    private int isWeekend(int day) {
-        return (day + 1) % 7;
+    public Map<Integer, String> setWeekdayEmployees(EmergencyWork emergencyWork) {
+        Map<Integer, String> weekdayEmployees = new HashMap<>();
+        List<Integer> weekdays = setWeekday(emergencyWork.getWorkMonth());
+        List<String> employees = emergencyWork.weekdayEmployee.getEmployees();
+        for (int i = 0; i < weekdays.size(); i++) {
+            int weekday = weekdays.get(i);
+            String employee = employees.get(i % employees.size());
+            weekdayEmployees.put(weekday, employee);
+        }
+        return weekdayEmployees;
+    }
+
+    private boolean isWeekend(int day) {
+        int turn = (day + 1) % 7;
+        if (turn == 6 || turn == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isHoliday(List<Integer> holiday, int day) {
+        if (holiday.contains(day)) {
+            return true;
+        }
+        return false;
     }
 }
