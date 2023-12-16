@@ -71,6 +71,17 @@ public class EmergencyWork {
         return weekdayEmployees;
     }
 
+
+
+    public Map<Integer, String> mergeAndSort(Map<Integer, String> weekday, Map<Integer, String> holiday) {
+        Map<Integer, String> merge = new HashMap<>(weekday);
+        merge.putAll(holiday);
+
+        Map<Integer, String> sorted = new TreeMap<>(merge);
+
+        return sorted;
+    }
+
     private boolean isWeekend(int day) {
         int turn = (day + 1) % 7;
         if (turn == 6 || turn == 0) {

@@ -20,17 +20,22 @@ public class Controller {
         EmergencyWork emergencyWork = setEmergencyWork(workMonth, weekday, holiday);
 
         List<Integer> holidays = emergencyWork.setHoliday(workMonth);
-        System.out.println(holidays);
+//        System.out.println(holidays);
         Map<Integer, String> holidayEmployee = emergencyWork.setHolidayEmployees(emergencyWork);
         TreeMap<Integer, String> treeMap = new TreeMap<>(holidayEmployee);
-        for (Map.Entry<Integer, String> entry : treeMap.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-        }
+//        for (Map.Entry<Integer, String> entry : treeMap.entrySet()) {
+//            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+//        }
         List<Integer> weekdays = emergencyWork.setWeekday(workMonth);
-        System.out.println(weekdays);
+//        System.out.println(weekdays);
         Map<Integer, String> weekdayEmployee = emergencyWork.setWeekdayEmployees(emergencyWork);
         TreeMap<Integer, String> treeMap2 = new TreeMap<>(weekdayEmployee);
-        for (Map.Entry<Integer, String> entry : treeMap2.entrySet()) {
+//        for (Map.Entry<Integer, String> entry : treeMap2.entrySet()) {
+//            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+//        }
+
+        Map<Integer, String> mergeEmployee = emergencyWork.mergeAndSort(weekdayEmployee, holidayEmployee);
+        for (Map.Entry<Integer, String> entry : mergeEmployee.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
     }
