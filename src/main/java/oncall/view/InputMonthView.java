@@ -10,7 +10,7 @@ public class InputMonthView extends InputView {
 
     public Map<String, String> getMonth() {
         System.out.print(REQUEST_MONTH);
-        String input = inputView();
+        String input = inputValue();
         try {
             parseInputValue(input);
         } catch (IllegalArgumentException e) {

@@ -12,13 +12,13 @@ public class InputEmployeeView extends InputView {
 
     public List<String> getWeekdayEmployee() {
         System.out.print(REQUEST_WEEKDAY_EMPLOYEE);
-        String input = inputView();
+        String input = inputValue();
         return parseEmployee(input);
     }
 
     public List<String> getHolidayEmployee() {
         System.out.print(REQUEST_HOLIDAY_EMPLOYEE);
-        String input = inputView();
+        String input = inputValue();
         return parseEmployee(input);
     }
 
