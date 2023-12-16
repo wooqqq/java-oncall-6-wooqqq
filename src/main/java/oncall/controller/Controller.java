@@ -16,7 +16,7 @@ public class Controller {
         EmergencyWorkMonth workMonth = setEmergencyWorkMonth(getMonth());
         Employees weekday = setEmployees(getEmployee(getWeekdayEmployee()));
         Employees holiday = setEmployees(getEmployee(getHolidayEmployee()));
-        setEmergencyWork(workMonth, weekday, holiday);
+        EmergencyWork emergencyWork = setEmergencyWork(workMonth, weekday, holiday);
     }
 
     private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {

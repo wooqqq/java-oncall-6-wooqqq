@@ -3,14 +3,16 @@ package oncall.domain;
 public class EmergencyWorkMonth {
     private int month;
     private String startDate;
+    private Calender calender;
 
     public EmergencyWorkMonth(String month, String startDate) {
         validateMonth(month);
         this.month = convertMonth(month);
         this.startDate = startDate;
+        this.calender = getCalenderByMonth(convertMonth(month));
     }
 
-    private Calender getCalenderByMonth(int month) {
+    public Calender getCalenderByMonth(int month) {
         for (Calender calender : Calender.values()) {
             if (calender.getMonth() == month) {
                 return calender;
@@ -19,7 +21,7 @@ public class EmergencyWorkMonth {
         return null;
     }
 
-    private Week getWeekByStartDate(String startDate) {
+    public Week getWeekByStartDate(String startDate) {
         for (Week week : Week.values()) {
             if (week.getDate().equals(startDate)) {
                 return week;
@@ -50,5 +52,9 @@ public class EmergencyWorkMonth {
 
     public String getStartDate() {
         return startDate;
+    }
+
+    public Calender getCalender() {
+        return calender;
     }
 }
