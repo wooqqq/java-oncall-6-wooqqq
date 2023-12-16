@@ -4,8 +4,9 @@ public class EmergencyWorkMonth {
     private int month;
     private String startDate;
 
-    public EmergencyWorkMonth(int month, String startDate) {
-        this.month = month;
+    public EmergencyWorkMonth(String month, String startDate) {
+        validateMonth(month);
+        this.month = convertMonth(month);
         this.startDate = startDate;
     }
 
@@ -25,5 +26,29 @@ public class EmergencyWorkMonth {
             }
         }
         return null;
+    }
+
+    private void validateMonth(String month) {
+        validateNumeric(month);
+    }
+
+    private void validateNumeric(String month) {
+        try {
+            Integer.parseInt(month);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    private int convertMonth(String month) {
+        return Integer.parseInt(month);
+    }
+
+    public String getStartDate() {
+        return startDate;
     }
 }

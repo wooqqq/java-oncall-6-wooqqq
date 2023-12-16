@@ -10,16 +10,16 @@ public class Controller {
         setEmergencyWorkMonth(getMonth());
     }
 
-    private EmergencyWorkMonth setEmergencyWorkMonth(Map<Integer, String> input) {
+    private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {
         if (!input.isEmpty()) {
-            Integer month = input.keySet().iterator().next();
+            String month = input.keySet().iterator().next();
             String startDate = input.get(month);
             return new EmergencyWorkMonth(month, startDate);
         }
         return null;
     }
 
-    private Map<Integer, String> getMonth() {
+    private Map<String, String> getMonth() {
         InputMonthView inputMonthView = new InputMonthView();
         return inputMonthView.getMonth();
     }
