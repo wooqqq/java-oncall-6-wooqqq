@@ -13,8 +13,8 @@ import java.util.Map;
 public class Controller {
     public void run() {
         setEmergencyWorkMonth(getMonth());
-        setEmployees(getEmployee(getWeekdayEmployee()));
-        setEmployees(getEmployee(getHolidayEmployee()));
+        Employees weekday = setEmployees(getEmployee(getWeekdayEmployee()));
+        Employees holiday = setEmployees(getEmployee(getHolidayEmployee()));
     }
 
     private EmergencyWorkMonth setEmergencyWorkMonth(Map<String, String> input) {
@@ -36,7 +36,6 @@ public class Controller {
     }
 
     private List<Employee> getEmployee(List<String> employeeNames) {
-        InputEmployeeView inputEmployeeView = new InputEmployeeView();
         List<Employee> employees = new ArrayList<>();
         List<String> names = employeeNames;
         for (String name : names) {
